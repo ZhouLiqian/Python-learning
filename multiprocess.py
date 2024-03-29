@@ -69,3 +69,61 @@
 #     p.join()
 
 '进程间同步'
+# from multiprocessing import Process, Lock
+
+# def f(l, i):
+#     # 锁机制
+#     l.acquire()
+#     try:
+#         print('hello world', i)
+#     finally:
+#         l.release()
+
+# if __name__ == "__main__":
+#     lock = Lock()
+#     for num in range(10):
+#         p = Process(target = f, args = (lock, num))
+#         p.start()
+#         p.join()
+
+'进程间共享状态'
+###共享内存: Value, Array###
+# from multiprocessing import Process, Value, Array
+
+# def f(n, a):
+#     n.value = 3.1415927
+#     for i in range(len(a)):
+#         a[i] = -a[i]
+        
+# if __name__ == "__main__":
+#     num = Value('d', 0.0)
+#     arr = Array('i', range(10))
+#     p = Process(target = f, args = (num, arr))
+#     p.start()
+#     p.join()
+#     print(num.value)
+#     print(arr[:])
+    
+###服务进程: Manager()###
+# from multiprocessing import Process, Manager
+
+# def f(d, i):
+#     d[1] = '1'
+#     d['2'] = 2
+#     d[0.25] = None
+#     i.reverse()
+    
+# if __name__ == "__main__":
+#     # Manager返回的管理器对象控制着服务进程
+#     # 该进程保存对象并允许其他进程来代理操作
+#     with Manager() as manager:
+#         d = manager.dict()
+#         l = manager.list(range(10))
+#         p = Process(target = f, args = (d, l))
+#         p.start()
+#         p.join()
+#         print(d)
+#         print(l)
+
+'使用工作进程'
+     
